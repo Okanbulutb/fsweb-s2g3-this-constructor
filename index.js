@@ -14,10 +14,27 @@
         + Bu `isim` ve `yas` i içeren bir string döndürmelidir Örnek: "Mary, 50"
 */
 
-function Kisi(/* kodlar buraya */) {
-  /* kodlar buraya */
+function Kisi(isim,yas){
+  this.isim = isim;
+  this.yas = yas;
+  let mide = [];
+  this.ye = function(food) {
+    mide.push(food);
+    console.log(mide);
+  }
+  this.bosalt = function(){
+    mide = [];
+  }
+  this.toString = function(){
+      console.log(isim);
+      console.log(yas);
+  }
 }
 
+const deneme = new Kisi("Mahmut",27);
+deneme.ye('Hamburger');
+deneme.bosalt();
+deneme.toString();
 
 /*
   GÖREV 2
@@ -35,18 +52,36 @@ function Kisi(/* kodlar buraya */) {
         +  "x milde benzinim bitti!" x değişkeni `odometer` daki sayı olmalıdır.
 */
 
-function Araba(/* kodlar buraya */) {
-  /* kodlar buraya */
+function Araba(model,milesPerGallon) {
+  this.cars = model;
+  this.tank = 0;
+  this.odometer = 0;
+  this.fill = function(gallons){
+    let galon = gallons;
+    this.tank = galon;
+  }
+  this.drive = function(distance){
+    this.odometer = this.odometer + distance;
+    this.tank = distance - milesPerGallon;
+    if (this.tank === 0){
+      console.log(`${this.odometer} milde benzinim bitti!`);
+    }
+  }
 }
+
+const car = new Araba("Batmobile",50);
+
+car.fill(50);
+car.drive(50);
 
 
 /* 
   GÖREV 3
   Kendi cümlelerinizle "this" kelimesinin 4 prensibini açıklayın:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. Window/Global Bağlaması => Global scope üzerinden "this" değerinin console'a bağlanması çeşididir.
+  2. Örtük Bağlama => Bir fonksiyondaki nesneleri çağırmak amacıyla kullanılan bir bağlanma çeşididir.
+  3. Yeni Bağlama(New Binding) => Bir fonksiyondaki constructor'u kullanmak amacıyla "new" anahtarı kullanan bir bağlanma çeşididir.
+  4. Açık Bağlama(Explicit Binding) => call veya apply yöntemi kullanarak bağlanma çeşididir.
 */
 
 
